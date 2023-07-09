@@ -20,6 +20,10 @@ function validateInput(testInput) {
    //new below
    if(testInput===""){
     return "Empty";
+   }else if (isNaN(Number(testInput))=== true){
+    return "Not a Number";
+   }else if (isNaN(Number(testInput))=== false){
+    return "Is a Number";
    }
    //new above
 }
@@ -28,6 +32,8 @@ function validateInput(testInput) {
 function formSubmission(pilot, copilot, fuelLevel, cargoLevel) { 
    if(validateInput(pilot)==="Empty" || validateInput(copilot)==="Empty" || validateInput(fuelLevel)==="Empty" || validateInput(cargoLevel)==="Empty"){
     alert("All fields are required!");
+   }else if(validateInput(pilot)==="Is a Number" || validateInput(copilot)==="Is a Number" || validateInput(fuelLevel)==="Not a Number" || validateInput(cargoLevel)==="Not a Number"){
+    alert("Pilot and Copilot should not be numbers. Fuel Level and Cargo Mass should be numbers. Please try again.");
    }
 }
 

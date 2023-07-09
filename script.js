@@ -19,7 +19,7 @@ window.addEventListener("load", function() {
     form.addEventListener("submit", function(event) {
       //let pilotNameInput = document.querySelector("input[name=pilotName]");
       //let pilot = pilotNameInput.value;
-      //combine 2 lines aboveto get this:
+      //combine the 2 lines above to get this line:
       let pilot = document.querySelector("input[name=pilotName]").value;
       let copilot = document.querySelector("input[name=copilotName]").value;
       let fuelLevel = document.querySelector("input[name=fuelLevel]").value;

@@ -34,6 +34,28 @@ function formSubmission(pilot, copilot, fuelLevel, cargoLevel) {
     alert("All fields are required!");
    }else if(validateInput(pilot)==="Is a Number" || validateInput(copilot)==="Is a Number" || validateInput(fuelLevel)==="Not a Number" || validateInput(cargoLevel)==="Not a Number"){
     alert("Pilot and Copilot should not be numbers. Fuel Level and Cargo Mass should be numbers. Please try again.");
+   }else if(fuelLevel>=10000 && cargoLevel<=10000){
+    launchStatus.innerHTML = "Shuttle ready for launch";
+    launchStatus.style.color = "green";
+    faultyItems.style.visibility='visible';
+    pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch.`;  
+    copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch.`;   
+   }else if(fuelLevel<10000){
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    launchStatus.style.color = "red";
+    faultyItems.style.visibility='visible';
+    pilotStatus.innerHTML = `The pilot is ${pilot}.`;  
+    copilotStatus.innerHTML = `The copilot is ${copilot}.`;  
+    fuelStatus.innerHTML = `Fuel level too low for launch.`;  
+    cargoStatus.innerHTML = `The cargo mass is ${cargoLevel} kg.`;  
+   }else if(cargoLevel>10000){
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    launchStatus.style.color = "red";
+    faultyItems.style.visibility='visible';
+    pilotStatus.innerHTML = `The pilot is ${pilot}.`;  
+    copilotStatus.innerHTML = `The copilot is ${copilot}.`;  
+    fuelStatus.innerHTML = `The fuel level is ${fuelLevel} L.`;  
+    cargoStatus.innerHTML = `The cargo mass is too high.`;  
    }
 }
 

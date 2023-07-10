@@ -2,22 +2,19 @@
 require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-   // Here is the HTML formatting for our mission target div.
-   /*
-                <h2>Mission Destination</h2>
-                <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
-                </ol>
-                <img src="">
-   */
+    missionTarget.innerHTML = 
+    `<h2>Mission Destination</h2>
+     <ol>
+        <li>Name: ${name}</li>
+        <li>Diameter: ${diameter} </li>
+        <li>Star: ${star}</li>
+        <li>Distance from Earth: ${distance}</li>
+        <li>Number of Moons: ${moons}</li>
+     </ol>
+     <img src=${imageUrl}>`;
 }
 
 function validateInput(testInput) {
-   //new below
    if(testInput===""){
     return "Empty";
    }else if (isNaN(Number(testInput))=== true){
@@ -25,7 +22,6 @@ function validateInput(testInput) {
    }else if (isNaN(Number(testInput))=== false){
     return "Is a Number";
    }
-   //new above
 }
 
 //function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {   
@@ -35,7 +31,7 @@ function formSubmission(pilot, copilot, fuelLevel, cargoLevel) {
    }else if(validateInput(pilot)==="Is a Number" || validateInput(copilot)==="Is a Number" || validateInput(fuelLevel)==="Not a Number" || validateInput(cargoLevel)==="Not a Number"){
     alert("Pilot and Copilot should not be numbers. Fuel Level and Cargo Mass should be numbers. Please try again.");
    }else if(fuelLevel>=10000 && cargoLevel<=10000){
-    launchStatus.innerHTML = "Shuttle ready for launch";
+    launchStatus.innerHTML = "Shuttle is ready for launch";
     launchStatus.style.color = "green";
     faultyItems.style.visibility='visible';
     pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch.`;  
@@ -62,13 +58,17 @@ function formSubmission(pilot, copilot, fuelLevel, cargoLevel) {
 async function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch().then( function(response) {
-        });
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+    return response.json();    
+    });
 
     return planetsReturned;
 }
 
-function pickPlanet(planets) {
+function pickPlanet(planets) { 
+    let maximumIndex = planets.length;
+    let chosenIndex = Math.floor(Math.random()*maximumIndex);
+    return planets[chosenIndex]; 
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
